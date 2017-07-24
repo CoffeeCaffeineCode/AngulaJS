@@ -1,0 +1,71 @@
+<div class="jumbotron text-left" ng-controller="SignupController">
+	<div class="col-sm-6 forms">
+		<div >
+			<form name="AddModuleForm">
+			<a href="" ng-click="showmodule()">Hide/Show Form </a>
+				<div class="form-group" ng-show="showmod">
+					<h3>Add Module </h3>
+					<p>Module Name</p>
+					<input type="text" class="form-control" ng-model="modulename"><br>
+					<p>Module Website</p>
+					<input type="text" class="form-control" placeholder="https://www.website.com/" ng-model="modulewebsite"><br><br>
+					<button type="button" class="btn btn-info" ng-click="addModule()">
+						ADD MODULE
+					</button><br>
+				</div>				
+			</form>
+		</div>
+		<div >
+			<form name="SignUpForm">
+				<a href="" ng-click="showstudent()">Hide/Show Form </a>
+				<div class="form-group" ng-show="showstu">
+					<h3>Sign-Up <sub>Hide Form</sub></h3>
+
+					<p>First Name</p>
+					<input type="text" class="form-control" ng-model="firstname"><br>
+					<p>Last Name</p>
+					<input type="text" class="form-control" ng-model="lastname"><br><br>
+					<p>email</p>
+					<input type="text" class="form-control" ng-model="email"><br><br>			
+					<p>Module</p>								
+					<select ng-model="selectedmodule">
+							<option  ng-repeat="group in groups | orderBy : 'name'">{{group.name}}</option>
+					 </select><br><br>
+					<button type="button" class="btn btn-info" ng-click="signUp()">
+						SIGN UP
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-6 forms">	
+		<!-- got the code for & from w3school -->
+		<h3>Modules &amp; Groups</h3>
+		<div class="panel panel-primary" ng-repeat="(key,value) in groups | orderBy : 'name'">
+            <div class="panel-heading">
+	            <h4 class="panel-title">
+	                <a ng-href="" target="_blank">{{value.name}}</a>                     
+	            </h4>     
+	        </div>                        
+            <div class="panel-body">
+                <table class="table table-bordered table-hover table-striped">
+                    <tr><th>First</th><th>Last</th><th>E-mail</th><th></th></tr>                                        	
+	                    <tr ng-repeat="student in value.students track by $index"">
+	                        <td>{{student.firstname}}</td>
+	                        <td>{{student.lastname}}</td>
+	                        <td>{{student.email}}</td>
+	                        <td class="text-center">
+	                            <button class="btn btn-warning btn-sm" ng-click="deleteStudent(student.email)">
+	                                <span class="glyphicon glyphicon-trash"></span>
+	                            </button>
+	                        </td>
+	                    </tr>		                    			             
+                </table>
+                <p class="text-right remove-group-link">
+                    <button  type="button" class="btn btn-warning" ng-click="deleteGroup(value.name)">
+                        <span class="glyphicon glyphicon-trash"></span> Remove Group
+                    </button>	      
+                </p> 
+        	</div>         
+	</div>
+</div>
