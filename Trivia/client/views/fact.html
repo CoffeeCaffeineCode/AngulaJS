@@ -1,0 +1,30 @@
+<div class="jumbotron text-left">
+	<h2>Facts</h2>
+
+	<form>
+		<div class="form-group">
+			<input type="text" class="form-control" ng-model="number">
+		</div>
+
+		<div class="form-group">
+			<div>
+				<button type="button" class="btn btn-primary" ng-click="getMathFact()">
+					Math
+				</button>
+				<button type="button" class="btn btn-primary" ng-click="getTriviaFact()">
+					Trivia
+				</button>
+				<button type="button" class="btn btn-primary" ng-click="getDateFact()">
+					Date
+				</button>
+				<button type="button" class="btn btn-primary" ng-click="getRandomFact()">
+					Random
+				</button>
+			</div>
+		</div>
+	</form>
+
+	<div>
+		<pre><b>{{ fact.type | uppercase }}</b> ({{fact.number}})<ul style="list-style-type:none ;"><li>-{{fact.text}}</li></ul></pre>
+	</div>
+</div>

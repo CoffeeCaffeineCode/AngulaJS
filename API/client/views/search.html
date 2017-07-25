@@ -1,0 +1,72 @@
+<div class="search-header">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <form>
+               <h2 class="v-center">Search</h2>
+               <p class="lead">/// Artist Name</p>
+
+               <div class="input-group">
+                  <input type="text" ng-model="artistname" class="form-control input-md"/>
+                  <span class="input-group-btn">
+                     <button
+                        type="button"
+                        class="btn btn-md btn-warning pull-right"
+                        ng-click="searchArtist()">Search</button>
+                  </span>
+               </div>
+            </form>
+            <div ng-show="searchview" ng-if="results" class="results-block">
+               <div ng-repeat="result in results">
+                  <div ng-repeat="item in result.items">
+                     <div class="row">
+                        <div class="show-name col-md-8"> {{item.name}}</div>
+                     </div>                 
+                     <div class="row">
+                        <div class="col-md-3">
+                           <img src="placeholder.jpg" ng-src="{{item.images[2].url}}"  />
+                        </div>                                               
+                     </div>
+                     <div>
+                        <span ng-repeat="genre in item.genres">                           
+                           {{genre +" | "}}                          
+                        </span>
+                     </div>                     
+                     <div>                           
+                           <div>
+                              <button ng-click="artistDetails(item.id,item.images[2].url,item.name)">Details</button>
+                           </div>
+                     </div>
+                     <hr>
+                  </div>
+               </div>
+            </div>
+            <div ng-show="detailsview" ng-if="results">
+               <div class="row">
+                  <div class="show-name col-md-8"> {{"Artist Name : "+ name}}</div>
+               </div> 
+               <div class="row">
+                  <div class="col-md-3" ng-if="image">                     
+                     <img src="placeholder.jpg" ng-src="{{image}}" />                     
+                  </div>
+                  <div class="col-md-3" ng-if="image===null">                     
+                     <img src="placeholder.jpg"/>                     
+                  </div>
+               </div>
+               <h2>Albums :</h2>
+               <div ng-repeat="result in results.items">
+                  <div class="row">
+                        <div class="show-name col-md-8"> {{result.name}}</div>
+                  </div> 
+                  <div class="row">
+                        <div class="col-md-3">
+                           <img src="placeholder.jpg" ng-src="{{result.images[2].url}}" />
+                        </div>                                               
+                  </div>
+                  
+               </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
